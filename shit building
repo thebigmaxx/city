@@ -1,0 +1,50 @@
+from Graphics import *
+
+class Building(object):
+    def __init__(self, x1, y1, x2, y2, color):
+        ##
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+        self.color = color
+
+        ##
+
+    def createBuilding(self, win):
+        building = Rectangle(Point(self.x1, self.y1), Point(self.x2, self.y2))
+        building.setFill(self.color)
+        building.draw(win)
+
+
+    def createWindow(self, x1, y1, x2, y2, color, win):
+        window = Rectangle(Point(x1, y1), Point(x2, y2))
+        window.setFill(color)
+        window.draw(win)
+
+
+
+
+
+class Hotel(Building):
+    def __init__(self, x1, y1, x2, y2, color):
+        super(Hotel, self).__init__(x1, y1, x2, y2, color)
+
+
+
+
+
+class City(object):
+    def __init__(self, win):
+        super(City, self).__init__()
+        hotel = Building(1, 275, 125, 650, 'gray', win)
+
+
+
+def main():
+    win = GraphWin("Test", 1000, 650)
+    city = City(win)
+    win.getMouse()
+    win.close()
+
+main()
