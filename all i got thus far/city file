@@ -1,0 +1,44 @@
+from graphics import *
+import random
+
+class Building(object):
+
+    def __init__(self, x, y, x2, y2, color):
+        self.x = x
+        self.y = y
+        self.x2 = x2
+        self.y2 = y2
+        self.color = color
+
+    def creatBuilding(self, win:GraphWin):
+        building = Rectangle(Point(self.x,self.y), Point(self.x2, self.y2))
+        building.setFill(str(self.color))
+        building.draw(win)
+
+
+
+
+class Skyscarpper(Building):
+
+    def __init__(self, win:GraphWin,numOfSections, x, y, x2, y2, color):
+        super(Skyscarpper, self).__init__(x, y, x2, y2, color)
+        #self.drawAntenna(win)
+        self.addFloor(numOfSections, win)
+
+    def addFloor(self, numOfSections, win:GraphWin):
+        side = ("right", "left")
+        sideChoice = random.choice(side)
+        indentNum = random.randint(25, 50)
+        for floor in numOfSections:
+            if sideChoice == "right":
+                newFloor = Rectangle(Point(self.x + 25, self.y + 75), Point(self.x2 - indentNum, self.y))
+                newFloor.draw(win)
+                self.x += 25
+            else:
+                newFloor = Rectangle(Point(self.x + indentNum, self.y + 75), Point(self.x2 - 25, self.y))
+                newFloor.draw(win)
+                self.x += indentNum
+            self.y += 75
+
+    #def drawAntenna(self):
+        #pass
