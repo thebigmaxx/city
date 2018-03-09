@@ -1,0 +1,13 @@
+from City import *
+
+
+def Main():
+    win = GraphWin('City', 1800,650)
+    win.setBackground('white')
+    s = Skyscarpper(win, 7, 50, 575, 250, 649, 'cyan')
+    win.getMouse()
+    win.close()
+
+
+
+Main()
