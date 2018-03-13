@@ -1,0 +1,19 @@
+from City import *
+win = GraphWin('City', 1800,650)
+
+
+def Main():
+    win.setBackground('white')
+    consturctions()
+    win.getMouse()
+    win.close()
+
+def consturctions():
+    s = Skyscarpper(win, 6, 50, 575, 250, 649, color_rgb(168, 103, 38))
+    s1 = Skyscarpper(win, 7, 350, 575, 600, 649, color_rgb(237, 213, 149))
+    b = Building(610, 575, 700, 649, color_rgb(178, 160, 112), win)
+    b1 = Building(710, 575, 800, 649, 'cyan', win)
+    b2 = Building(260, 575, 340, 649, 'black', win)
+    b3 = Building(-50, 600, 40, 649, 'orange', win)
+
+Main()
