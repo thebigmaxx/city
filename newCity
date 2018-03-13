@@ -10,13 +10,21 @@ class Building(object):
         self.y2 = y2
         self.color = color
         self.creatBuilding(win)
+        self.creatWindow(win)
 
     def creatBuilding(self, win:GraphWin):
         building = Rectangle(Point(self.x,self.y), Point(self.x2, self.y2))
         building.setFill(str(self.color))
         building.draw(win)
 
-
+    def creatWindow(self, win:GraphWin):
+        newX = self.x + 10
+        newY = self.y + 10
+        newX2 = self.x2 - 10
+        newY2 = self.y2 - 10
+        window = Rectangle(Point(newX, newY), Point(newX2, newY2))
+        window.draw(win)
+        window.setFill(color_rgb(127, 172, 244))
 
 
 class Skyscarpper(Building):
@@ -27,24 +35,16 @@ class Skyscarpper(Building):
         self.addFloor(numOfSections, win, color)
 
     def addFloor(self, numOfSections, win:GraphWin, color):
+        height = 75
+        height2 = 0
+        with1 = 25
         for floor in range(numOfSections):
-            height = 75
-            with1 = 25
-            with2 = 5
-            if self.x <= 200 and self.x2 >= 220:
-                newFloor = Rectangle(Point(self.x, self.y - height), Point(self.x2, self.y))
-                newFloor.draw(win)
-                newFloor.setFill(color)
-                height += 75
-            else:
-                newFloor = Rectangle(Point(self.x + with1, self.y - height), Point(self.x2 - with2, self.y))
-                newFloor.draw(win)
-                newFloor.setFill(color)
-                with1 += 25
-                height += 75
-                with2 += 5
-    #def drawAntenna(self):
-        #pass
+            newFloor = Rectangle(Point(self.x + with1, self.y - height), Point(self.x2, self.y - height2))
+            newFloor.draw(win)
+            newFloor.setFill(color)
+            height2 += 75
+            height += 75
+            with1 += 25
 
-
-
+    def drawAntenna(self):
+            pass
