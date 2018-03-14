@@ -1,0 +1,87 @@
+from Graphics import *
+import random
+
+class Building(object):
+    def __init__(self, x1, y1, x2, y2, color,win):
+        ##
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+        self.color = color
+        self.createBuilding(win)
+        self.createWindow(win)
+        ##
+
+    def createBuilding(self, win):
+        building = Rectangle(Point(self.x1, self.y1), Point(self.x2, self.y2))
+        building.setFill(self.color)
+        building.draw(win)
+
+    def createWindow(self, win: GraphWin):
+        newX = self.x1 + 10
+        newY = self.y1 + 10
+        newX2 = self.x2 - 10
+        newY2 = self.y2 - 10
+        window = Rectangle(Point(newX, newY), Point(newX2, newY2))
+        window.draw(win)
+        window.setFill(color_rgb(127, 172, 244))
+
+
+class Skyscraper(Building):
+
+    def __init__(self, win:GraphWin, numOfSections, x, y, x2, y2, color):
+        super(Skyscraper, self).__init__(x, y, x2, y2, color, win)
+        #self.drawAntenna(win)
+        self.addFloor(numOfSections, win, color)
+
+    def addFloor(self, numOfSections, win:GraphWin, color):
+        height = 75
+        height2 = 0
+        with1 = 25
+        for floor in range(numOfSections):
+            newFloor = Rectangle(Point(self.x1 + with1, self.y1 - height), Point(self.x2, self.y1 - height2))
+            newFloor.draw(win)
+            newFloor.setFill(color)
+            height2 += 75
+            height += 75
+            with1 += 25
+
+
+
+
+class HotelSign(Building):
+    def __init__(self, x1, y1, x2, y2, color):
+        super(HotelSign, self).__init__(x1, y1, x2, y2, color)
+
+
+
+
+
+
+
+class City(object):
+    def __init__(self, win):
+        self.sky(win)
+        s = Skyscraper(win, 6, 50, 575, 250, 649, color_rgb(168, 103, 38))
+        s1 = Skyscraper(win, 7, 350, 575, 600, 649, color_rgb(237, 213, 149))
+        b = Building(610, 575, 700, 649, color_rgb(178, 160, 112), win)
+        b1 = Building(710, 575, 800, 649, 'cyan', win)
+        b2 = Building(260, 575, 340, 649, 'black', win)
+        b3 = Building(-50, 600, 40, 649, 'orange', win)
+
+    def sky(self, win):
+        sky = Image(Point(500, 325), 'sky.png')
+        sky.draw(win)
+
+
+
+
+
+def main():
+    win = GraphWin("Test", 1000, 650)
+    city = City(win)
+    win.getMouse()
+    win.close()
+
+main()
